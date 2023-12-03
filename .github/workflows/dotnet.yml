@@ -19,24 +19,13 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 7.0.x
+        dotnet-version: 6.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: |
        dotnet build --configuration Release --no-restore
-       dotnet publish -c Release -r win-x64 --output ./publish/win-x64/  --self-contained true --no-restore
-       dotnet publish -c Release -r win-x86 --output ./publish/win-x86/  --self-contained true --no-restore
-       dotnet publish -c Release -r win-arm64 --output ./publish/win-arm64/  --self-contained true --no-restore
-       dotnet publish -c Release -r osx-x64 --output ./publish/osx-x64/  --self-contained true --no-restore
-       dotnet publish -c Release -r osx-arm64 --output ./publish/osx-arm64/  --self-contained true --no-restore
-       dotnet publish -c Release -r linux-x64 --output ./publish/linux-x64/  --self-contained true --no-restore
-       dotnet publish -c Release -r linux-arm --output ./publish/linux-arm/  --self-contained true --no-restore
-       dotnet publish -c Release -r linux-arm64 --output ./publish/linux-arm64/  --self-contained true --no-restore
-       dotnet publish -c Release -r linux-musl-arm64 --output ./publish/linux-musl-arm64/  --self-contained true --no-restore
-       dotnet publish -c Release -r linux-musl-x64 --output ./publish/linux-musl-x64/  --self-contained true --no-restore
-       rm -f ./publish/*/*.pdb
-       rm -f ./publish/*/*.xml
+       dotnet publish -c Release -r win-x64 --output ./publish  --self-contained true
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - uses: "marvinpinto/action-automatic-releases@latest"
@@ -47,4 +36,4 @@ jobs:
         title: "testcase-validator"
         files: |
           LICENSE
-          publish/*/testcase-validator
+          publish/testcase-validator.exe
