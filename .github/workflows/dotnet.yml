@@ -34,4 +34,5 @@ jobs:
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "publish/testcase-validator.exe"
-        commit: main
+        commit: "main"
+        tag: "main"
