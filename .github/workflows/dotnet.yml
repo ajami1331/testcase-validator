@@ -31,10 +31,12 @@ jobs:
       with:
         name: testcase-validator
         path: publish/testcase-validator.exe
-    - name: Create a Release
-      uses: elgohr/Github-Release-Action@v5
-      env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+    - uses: "marvinpinto/action-automatic-releases@latest"
       with:
-        title: testcase-validator
-        workdir: publish
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: "testcase-validator"
+        files: |
+          LICENSE
+          publish/testcase-validator.exe
