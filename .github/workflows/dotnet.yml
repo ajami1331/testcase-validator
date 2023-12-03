@@ -19,7 +19,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 7.0.x
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -35,6 +35,18 @@ jobs:
        dotnet publish -c Release -r linux-arm64 --output ./publish/linux-arm64/ --self-contained true
        dotnet publish -c Release -r linux-musl-arm64 --output ./publish/linux-musl-arm64/ --self-contained true
        dotnet publish -c Release -r linux-musl-x64 --output ./publish/linux-musl-x64/ --self-contained true
+       rm -rf ./publish/*/testcase-validator.pdb
+       rm -rf ./publish/*/testcase-validator.xml
+       mv ./publish/win-x64/testcase-validator.exe ./publish/win-x64/testcase-validator-win-x64.exe
+       mv ./publish/win-x86/testcase-validator.exe ./publish/win-x86/testcase-validator-win-x86.exe
+       mv ./publish/win-arm64/testcase-validator.exe ./publish/win-arm64/testcase-validator-win-arm64.exe
+       mv ./publish/osx-x64/testcase-validator ./publish/osx-x64/testcase-validator-osx-x64
+       mv ./publish/osx-arm64/testcase-validator ./publish/osx-arm64/testcase-validator-osx-arm64
+       mv ./publish/linux-x64/testcase-validator ./publish/linux-x64/testcase-validator-linux-x64
+       mv ./publish/linux-arm/testcase-validator ./publish/linux-arm/testcase-validator-linux-arm
+       mv ./publish/linux-arm64/testcase-validator ./publish/linux-arm64/testcase-validator-linux-arm64
+       mv ./publish/linux-musl-arm64/testcase-validator ./publish/linux-musl-arm64/testcase-validator-linux-musl-arm64
+       mv ./publish/linux-musl-x64/testcase-validator ./publish/linux-musl-x64/testcase-validator-linux-musl-x64
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - uses: "marvinpinto/action-automatic-releases@latest"
