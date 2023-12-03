@@ -24,7 +24,7 @@ jobs:
       run: dotnet restore
     - name: Build
       run: |
-       dotnet build --configuration Release --no-restore
+       dotnet build --configuration Release
        dotnet publish -c Release -r win-x64 --output ./publish/win-x64  --self-contained true --no-restore
        dotnet publish -c Release -r win-x86 --output ./publish/win-x86  --self-contained true --no-restore
        dotnet publish -c Release -r win-arm64 --output ./publish/win-arm64  --self-contained true --no-restore
