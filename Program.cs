@@ -125,6 +125,8 @@ class Program
             Console.WriteLine("Total score must be 100. Total score is {0}", totalScore);
             return;
         }
+
+        Console.WriteLine("Validation successfull.");
     }
 
     private static bool ValidateValidatorType(TestCaseConfig config, ZipArchive zipFile)
