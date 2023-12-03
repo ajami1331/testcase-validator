@@ -45,4 +45,4 @@ jobs:
         title: "testcase-validator"
         files: |
           LICENSE
-          publish/testcase-validator.exe
+          publish/*/testcase-validator
