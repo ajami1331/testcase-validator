@@ -57,4 +57,4 @@ jobs:
         title: "testcase-validator"
         files: |
           LICENSE
-          publish/*/testcase-validator
+          publish/*/testcase-validator*
