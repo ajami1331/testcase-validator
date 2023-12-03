@@ -86,7 +86,7 @@ class Program
             return;
         }
 
-        if (config.TestCases.Length == 0)
+        if (config.TestCases == null || config.TestCases.Length == 0)
         {
             Console.WriteLine("No test cases found.");
             return;
