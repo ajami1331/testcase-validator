@@ -20,13 +20,11 @@ class Program
 
         Console.WriteLine("Validating file: " + file.Name);
 
-        if (!IsZipValid(file.FullName))
+        if (!IsZipValid(file.FullName, out var zipFile))
         {
             Console.WriteLine("Not a zip file.");
             return;
         }
-
-        var zipFile = ZipFile.OpenRead(file.FullName);
 
         var configEntry = zipFile.GetEntry("Config.json");
 
@@ -182,18 +180,16 @@ class Program
         }
     }
 
-    public static bool IsZipValid(string path)
+    public static bool IsZipValid(string path, out ZipArchive? zipFile)
     {
         try
         {
-            using (var zipFile = ZipFile.OpenRead(path))
-            {
-                var entries = zipFile.Entries;
-                return true;
-            }
+            zipFile = ZipFile.OpenRead(path);
+            return true;
         }
         catch (InvalidDataException)
         {
+            zipFile = null;
             return false;
         }
     }
