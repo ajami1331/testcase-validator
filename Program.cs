@@ -26,7 +26,7 @@ class Program
             return;
         }
 
-        var configEntry = zipFile.GetEntry("Config.json");
+        var configEntry = zipFile!.GetEntry("Config.json");
 
         if (configEntry == null)
         {
@@ -186,7 +186,7 @@ class Program
         try
         {
             zipFile = ZipFile.OpenRead(path);
-            return true;
+            return zipFile is not null;
         }
         catch (InvalidDataException)
         {
