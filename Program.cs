@@ -171,12 +171,11 @@ class Program
         try
         {
             using var stream = configEntry.Open();
-            config = JsonSerializer.Deserialize<TestCaseConfig>(stream)!;
-            return true;
+            config = JsonSerializer.Deserialize<TestCaseConfig>(stream);
+            return config is not null;
         }
         catch (Exception)
         {
-            Console.WriteLine("Failed to parse Config.json.");
             config = null;
             return false;
         }
