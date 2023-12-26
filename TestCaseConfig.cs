@@ -13,6 +13,8 @@
     public string? ValidatorSourceCode { get; set; }
 
     public string? ValidatorLanguage { get; set; }
+
+    public long[]? Samples { get; set; }
 }
 
 public class TestCase

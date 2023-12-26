@@ -126,6 +126,18 @@ class Program
             return;
         }
 
+        if (config.Samples is not null)
+        {
+            foreach (var sample in config.Samples)
+            {
+                if (sample < 0 || sample >= config.TestCases.Length)
+                {
+                    Console.WriteLine("Sample must be between 0 and {0}. Sample is {1}", config.TestCases.Length - 1, sample);
+                    return;
+                }
+            }
+        }
+
         Console.WriteLine("Validation successfull.");
     }
 
